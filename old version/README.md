@@ -29,8 +29,8 @@ The hand is called twisting when it's changing of state (opend/closed).
 - mode tempo  
 	- hand closed (z) -> change scale tempo (from the center)  
 	- hand (x) at the right -> activer camera auto normal/fpv (opened/closed)  
-	- hand opened (x) � gauche -> reset camera  
-	- hand closed (x) � gauche -> desactivate camera auto  
+	- hand opened (x) gauche -> reset camera  
+	- hand closed (x) gauche -> desactivate camera auto  
 	- hand twisting -> mode fpv  
 - mode fpv (first person view)  
 	- hand opened (x,y,z) -> rotation camera (from the center)  
