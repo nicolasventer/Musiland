@@ -1,6 +1,6 @@
 class Umbrella {
 
-  PVector pos = new PVector(0, 0, 0.6); //# default zPos
+  PVector pos = new PVector();
   PVector size = new PVector(0.4, 0.4);
   boolean actived = false;
 
@@ -37,7 +37,7 @@ class Umbrella {
     if (actived) {
       fill(255, 150);
       pushMatrix();
-      translate(pos.x*scale.x, pos.y*scale.y, pos.z*scale.z);
+      translate(pos.x*scale.x, pos.y*scale.y, (pos.z+0.5)*scale.z);
       box(size.x*scale.x, size.y*scale.y, 1);
       translate(0, 0, 1);
       for (int i=0; i<allImpact.size(); i++) {

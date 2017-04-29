@@ -115,6 +115,7 @@ class Grid {
       float ratioVelocity = (float)velocity/middleVelocity;
       PVector position = getPosition(channel, pitch);
       float targetValue = (pitch > middlePitch ? maxValue : -maxValue) * ratio;
+      // TODO : getEasingFromPitch(pitch) && getEasingFromVelocity
       float easing = 0.005+0.07*pow(ratioToMiddlePitch, 0.8)*pow(ratioVelocity, 2);
       int radiusGrid = (int)(basicRadiusGrid*pow(max(0, 1-ratioPitch), 0.7));
       if (tick!=0)
@@ -128,7 +129,7 @@ class Grid {
       else {
         ln.randomAdd.x = random(-1, 1)*randomSeed+ln.randomAdd.x*(1-randomSeed);
         ln.randomAdd.y = random(-1, 1)*randomSeed+ln.randomAdd.y*(1-randomSeed);
-        ln.position.add(PVector.mult(ln.randomAdd, basicDistance*abs(pitch-ln.pitch))); //# difference notes' position proportionnal notes' pitch
+        ln.position.add(PVector.mult(ln.randomAdd, basicDistance*abs(pitch-ln.pitch)));
         ln.position.x = (ln.position.x%(sizeGrid.x-1)+sizeGrid.x-1)%(sizeGrid.x-1);
         ln.position.y = (ln.position.y%(sizeGrid.y-1)+sizeGrid.y-1)%(sizeGrid.y-1);
         ln.pitch = pitch;

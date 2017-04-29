@@ -14,15 +14,10 @@ class MidiFileReader {
   int trackSize;
   int indexInTrack = 0;
 
-  float zPos = 0;
   float tempoFactor = 1;
   float tempoFactorMax = 2; // tempoFactorMin = 1/tempoFactorMax
 
-  float refreshRate = 0.24; // calculate for mean(ratio) -> 1
-
-  float easingTempo = 0.015;
-  float lastTempoChangedTime = 0;
-  float tempoChangedDuration = 10000;
+  float refreshRate = 0.24;
 
   void openMidiFile(String folderMidi, String fileNameMidi) {
     try {
@@ -43,7 +38,6 @@ class MidiFileReader {
     sequencer.setSequence(sequence);
   }
 
-  //# transform a track into melodies
   void setTrackMelodies(Sequence sequence) {
     Track[] tracks = sequence.getTracks();
     TreeMap<Long, ArrayList<MidiEvent>> tracksMap = new TreeMap<Long, ArrayList<MidiEvent>>();
@@ -84,10 +78,6 @@ class MidiFileReader {
   }
 
   void getCurrentMessage() {
-    if (millis()>lastTempoChangedTime+tempoChangedDuration) {
-      zPos-=zPos*easingTempo;
-      setTempoFactor();
-    }
     sequencer.setTempoFactor(tempoFactor);
     while (indexInTrack<trackSize && sequencer.getTickPosition() >= track.get(indexInTrack).getTick()) {
       getMessage(track.get(indexInTrack));
@@ -168,13 +158,7 @@ class MidiFileReader {
     }
   };
 
-  void changeTempo(float zPosToAdd) {
-    zPos = constrain(zPos+zPosToAdd, -0.5, 0.5);
-    setTempoFactor();
-    lastTempoChangedTime = millis();
-  }
-
-  void setTempoFactor() {
+  void setTempoFactor(float zPos) {
     tempoFactor = 1f/tempoFactorMax*pow(tempoFactorMax, 2*(zPos+0.5));
   }
 }

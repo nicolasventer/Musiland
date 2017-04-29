@@ -2,6 +2,18 @@
 
 class Rain {
 
+  ArrayList<Drop> allDrops = new ArrayList<Drop>();
+  int maxDrop = 3;
+  float stepDrop = 0.1;
+  //AudioPlayer rainSound;
+  float minGain = -35;
+  float maxGain = 5;
+
+  float minSpeed = 0.04;
+  float maxSpeed = 0.1;
+  float minThickness = 2;
+  float maxThickness = 4;
+
   class NoteRate {
     float rate = 0;
     int timeRate = 0;
@@ -17,18 +29,6 @@ class Rain {
       rate = (float)(timeRate - millis())/(nbRefAdd*addToTimeRate);
     }
   }
-
-  ArrayList<Drop> allDrops = new ArrayList<Drop>();
-  int maxDrop = 3;
-  float stepDrop = 0.1;
-  //AudioPlayer rainSound;
-  float minGain = -35;
-  float maxGain = 5;
-
-  float minSpeed = 0.04;
-  float maxSpeed = 0.1;
-  float minThickness = 2;
-  float maxThickness = 4;
 
   NoteRate rain = new NoteRate(2.5, 90);
   NoteRate wind = new NoteRate(1000, 120);
@@ -109,7 +109,7 @@ class Rain {
       Drop drop = allDrops.get(i);
       drop.drawDrop(scale);
       drop.updateDrop();
-      if (drop.isDead() || umbrella.killDrop(drop.position, drop.speedZ, drop.thickness, allOnDrop[drop.level].getColor(drop.cStart, drop.cEnd, 0))) {
+      if (drop.isDead() || umbrella.killDrop(drop.position, drop.speedZ, drop.thickness, drop.cStart)) {
         allDrops.remove(i);
         i--;
       }

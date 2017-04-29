@@ -9,7 +9,6 @@ class Sun {
     sun.y = scale.y*cos(currentAng)/2;
     sun.z = scale.z*sin(currentAng);
   }
-
   void drawSun(float sizeSun) {
     pushMatrix();
     translate(sun.x, sun.y, sun.z);
