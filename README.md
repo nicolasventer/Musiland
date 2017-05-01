@@ -12,7 +12,7 @@ But then, do the music have a visual correspondence ?
 And if so, is a beautiful landscape a reflection of beautiful music ?  
 Musiland aims to provide an overview of the answers to these questions.
 
-[Demo](Musiland%20Demo.mp4)
+[Demo](https://raw.githubusercontent.com/nicolasventer/Musiland/master/Musiland%20Demo.mp4)
 
 ## Introduction
 In the land of Musiland, the landscape comes alive according to the music played.  
